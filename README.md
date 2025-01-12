@@ -12,7 +12,7 @@ This course focuses on the principles and practices of financial management, off
 ## Course Materials  
 To succeed in this course, students are required to study the following:  
 
-1. **Official Course Notes**  
+**Official Course Notes**  
 1. **[Lean Coursebook 13005 - 2025 A](./Lean%20coursebook%2013005%20-%202025%20A.docx)**  
    - This coursebook contains essential information and materials for the course. Make sure to review it thoroughly to prepare for assignments and exams.  
 
