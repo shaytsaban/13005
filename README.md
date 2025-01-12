@@ -31,4 +31,4 @@ To succeed in this course, students are required to study the following:
 ## Contact  
 For any queries related to the course, please contact:  
 **Dr. Shay Tsaban**  
-_Email_: [Insert email here]  
+_Email_: shay.tsaban@gmail.com  
