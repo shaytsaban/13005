@@ -13,7 +13,8 @@ This course focuses on the principles and practices of financial management, off
 To succeed in this course, students are required to study the following:  
 
 1. **Official Course Notes**  
-   - The course notes provided by the instructor are a critical resource. These notes cover key concepts, examples, and explanations tailored to the course content.  
+1. **[Lean Coursebook 13005 - 2025 A](./Lean%20coursebook%2013005%20-%202025%20A.docx)**  
+   - This coursebook contains essential information and materials for the course. Make sure to review it thoroughly to prepare for assignments and exams.  
 
 2. **Official Course Website**  
    - **[The Open University of Israel Website](https://www.openu.ac.il/)**  
