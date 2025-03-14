@@ -14,6 +14,8 @@
     .nav-bar a { color: #fff; text-decoration: none; padding: 12px 25px; font-size: 1.1em; background: rgba(255,255,255,0.1); border-radius: 25px; margin: 0 10px; transition: all 0.3s ease; }
     .nav-bar a:hover { background: #ffca28; color: #0056b3; transform: scale(1.05); }
     .dropdown { position: relative; display: inline-block; }
+    .dropdown-btn { color: #fff; padding: 12px 25px; font-size: 1.1em; background: rgba(255,255,255,0.1); border-radius: 25px; margin: 0 10px; transition: all 0.3s ease; cursor: pointer; display: inline-block; }
+    .dropdown-btn:hover { background: #ffca28; color: #0056b3; transform: scale(1.05); }
     .dropdown-content { display: none; position: absolute; background: #fff; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 1; top: 100%; left: 50%; transform: translateX(-50%); }
     .dropdown-content a { color: #2d3748; padding: 10px 15px; display: block; background: none; text-align: left; border-radius: 0; margin: 0; font-size: 1em; }
     .dropdown-content a:hover { background: #ffca28; color: #0056b3; transform: none; }
@@ -39,7 +41,7 @@
       <a href="../index.html">🏠 Home</a>
       <a href="../forum.html">💬 Discussion Forum</a>
       <div class="dropdown">
-        <a href="../questions.html">❓ Questions by Units</a>
+        <span class="dropdown-btn">❓ Questions by Units (EXPERIMENT)</span>
         <div class="dropdown-content">
           <a href="./index5.html">📊 Unit 5 - FV and PV</a>
           <a href="#">🏭 Unit 6 - Projects</a>
