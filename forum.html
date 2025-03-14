@@ -5,88 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Discussion Forum - Financial Management 13005</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: #007bff;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    .forum-thread {
-      background: #fff;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .thread-header {
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-    }
-    .thread-header h3 {
-      color: #007bff;
-      margin-bottom: 5px;
-    }
-    .thread-meta {
-      font-size: 0.9em;
-      color: #666;
-    }
-    .replies {
-      margin-left: 20px;
-      margin-top: 15px;
-    }
-    .reply {
-      border-left: 2px solid #007bff;
-      padding-left: 15px;
-      margin-bottom: 15px;
-    }
-    .new-thread, .new-reply {
-      margin: 20px 0;
-    }
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      margin-bottom: 10px;
-    }
-    button {
-      background: #28a745;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #218838;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.6; }
+    header { background: #007bff; color: #fff; padding: 20px; text-align: center; }
+    .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+    .forum-thread { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .thread-header { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; }
+    .thread-header h3 { color: #007bff; margin-bottom: 5px; }
+    .thread-meta { font-size: 0.9em; color: #666; }
+    .replies { margin-left: 20px; margin-top: 15px; }
+    .reply { border-left: 2px solid #007bff; padding-left: 15px; margin-bottom: 15px; }
+    .new-thread, .new-reply { margin: 20px 0; }
+    textarea { width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px; }
+    input[type="file"] { margin-bottom: 10px; }
+    button { background: #28a745; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #218838; }
+    .attachment-preview { margin-top: 10px; max-width: 200px; }
   </style>
 </head>
 <body>
   <header>
     <h1>📢 Discussion Forum</h1>
     <p>Financial Management 13005 | Share your thoughts and questions</p>
-    <nav style="margin-top: 10px;">
+    <div style="margin-top: 10px;">
       <a href="index.html" style="color: #fff; margin-right: 15px; text-decoration: none;">Home</a>
       <a href="forum.html" style="color: #fff; text-decoration: none;">Forum</a>
-    </nav>
+    </div>
   </header>
 
   <div class="container">
@@ -94,62 +38,166 @@
       <h2>Start a New Discussion</h2>
       <input type="text" id="threadTitle" placeholder="Thread Title" style="width: 100%; padding: 10px; margin-bottom: 10px;">
       <textarea id="threadContent" placeholder="Write your message here..." rows="4"></textarea>
+      <input type="file" id="threadFile" accept="image/*,.pdf,.doc,.docx">
       <button onclick="createThread()">Post Thread</button>
     </section>
 
-    <section id="threads">
-      <!-- Threads will be dynamically added here -->
-    </section>
+    <section id="threads"></section>
   </div>
 
   <script>
+    // Load threads from localStorage on page load
+    window.onload = function() {
+      const threads = JSON.parse(localStorage.getItem('forumThreads')) || [];
+      threads.forEach(thread => renderThread(thread));
+    };
+
     function createThread() {
       const title = document.getElementById('threadTitle').value;
       const content = document.getElementById('threadContent').value;
+      const fileInput = document.getElementById('threadFile');
       if (!title || !content) {
         alert('Please fill in both title and content');
         return;
       }
 
+      const thread = {
+        id: Date.now(),
+        title,
+        content,
+        date: new Date().toLocaleString(),
+        replies: [],
+        attachment: null
+      };
+
+      // Handle file attachment (base64 for preview, not persistent yet)
+      if (fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          thread.attachment = {
+            name: fileInput.files[0].name,
+            data: e.target.result,
+            type: fileInput.files[0].type
+          };
+          saveAndRenderThread(thread);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveAndRenderThread(thread);
+      }
+    }
+
+    function saveAndRenderThread(thread) {
+      const threads = JSON.parse(localStorage.getItem('forumThreads')) || [];
+      threads.unshift(thread);
+      localStorage.setItem('forumThreads', JSON.stringify(threads));
+      renderThread(thread, true);
+      document.getElementById('threadTitle').value = '';
+      document.getElementById('threadContent').value = '';
+      document.getElementById('threadFile').value = '';
+    }
+
+    function renderThread(thread, prepend = false) {
       const threadsSection = document.getElementById('threads');
       const threadDiv = document.createElement('div');
       threadDiv.className = 'forum-thread';
-      
+      threadDiv.dataset.id = thread.id;
+
+      let attachmentHtml = '';
+      if (thread.attachment) {
+        if (thread.attachment.type.startsWith('image/')) {
+          attachmentHtml = `<img src="${thread.attachment.data}" class="attachment-preview" alt="${thread.attachment.name}">`;
+        } else {
+          attachmentHtml = `<p>Attachment: <a href="${thread.attachment.data}" download="${thread.attachment.name}">${thread.attachment.name}</a></p>`;
+        }
+      }
+
       threadDiv.innerHTML = `
         <div class="thread-header">
-          <h3>${title}</h3>
-          <div class="thread-meta">Posted by Student on ${new Date().toLocaleDateString()}</div>
+          <h3>${thread.title}</h3>
+          <div class="thread-meta">Posted on ${thread.date}</div>
         </div>
-        <p>${content}</p>
-        <div class="replies" id="replies-${Date.now()}"></div>
+        <p>${thread.content}</p>
+        ${attachmentHtml}
+        <div class="replies" id="replies-${thread.id}"></div>
         <div class="new-reply">
           <textarea placeholder="Write a reply..." rows="2"></textarea>
-          <button onclick="createReply(this)">Post Reply</button>
+          <input type="file" accept="image/*,.pdf,.doc,.docx">
+          <button onclick="createReply(this, ${thread.id})">Post Reply</button>
         </div>
       `;
 
-      threadsSection.insertBefore(threadDiv, threadsSection.firstChild);
-      document.getElementById('threadTitle').value = '';
-      document.getElementById('threadContent').value = '';
+      if (prepend) {
+        threadsSection.insertBefore(threadDiv, threadsSection.firstChild);
+      } else {
+        threadsSection.appendChild(threadDiv);
+      }
+
+      thread.replies.forEach(reply => renderReply(reply, thread.id));
     }
 
-    function createReply(button) {
-      const replyText = button.previousElementSibling.value;
+    function createReply(button, threadId) {
+      const replyText = button.previousElementSibling.previousElementSibling.value;
+      const fileInput = button.previousElementSibling;
       if (!replyText) {
         alert('Please write a reply');
         return;
       }
 
-      const repliesDiv = button.parentElement.previousElementSibling;
+      const reply = {
+        id: Date.now(),
+        content: replyText,
+        date: new Date().toLocaleString(),
+        attachment: null
+      };
+
+      if (fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          reply.attachment = {
+            name: fileInput.files[0].name,
+            data: e.target.result,
+            type: fileInput.files[0].type
+          };
+          saveAndRenderReply(reply, threadId);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveAndRenderReply(reply, threadId);
+      }
+    }
+
+    function saveAndRenderReply(reply, threadId) {
+      const threads = JSON.parse(localStorage.getItem('forumThreads')) || [];
+      const thread = threads.find(t => t.id === threadId);
+      thread.replies.push(reply);
+      localStorage.setItem('forumThreads', JSON.stringify(threads));
+      renderReply(reply, threadId);
+      const threadDiv = document.querySelector(`[data-id="${threadId}"]`);
+      threadDiv.querySelector('textarea').value = '';
+      threadDiv.querySelector('input[type="file"]').value = '';
+    }
+
+    function renderReply(reply, threadId) {
+      const repliesDiv = document.getElementById(`replies-${threadId}`);
       const replyDiv = document.createElement('div');
       replyDiv.className = 'reply';
+
+      let attachmentHtml = '';
+      if (reply.attachment) {
+        if (reply.attachment.type.startsWith('image/')) {
+          attachmentHtml = `<img src="${reply.attachment.data}" class="attachment-preview" alt="${reply.attachment.name}">`;
+        } else {
+          attachmentHtml = `<p>Attachment: <a href="${reply.attachment.data}" download="${reply.attachment.name}">${reply.attachment.name}</a></p>`;
+        }
+      }
+
       replyDiv.innerHTML = `
-        <p>${replyText}</p>
-        <div class="thread-meta">Reply by Student on ${new Date().toLocaleDateString()}</div>
+        <p>${reply.content}</p>
+        ${attachmentHtml}
+        <div class="thread-meta">Reply on ${reply.date}</div>
       `;
-      
       repliesDiv.appendChild(replyDiv);
-      button.previousElementSibling.value = '';
     }
   </script>
 </body>
