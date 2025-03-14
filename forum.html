@@ -43,8 +43,8 @@
     <h1>📢 Discussion Forum</h1>
     <p>Financial Management 13005 | Share your thoughts and questions</p>
     <div class="nav-bar">
-      <a href="/index.html">Home</a>
-      <a href="/forum.html">Discussion Forum</a>
+      <a href="../index.html">Home</a>
+      <a href="./forum.html">Discussion Forum</a>
     </div>
   </header>
 
@@ -61,11 +61,9 @@
   </div>
 
   <script>
-    // Placeholder admin check (to be replaced with backend auth later)
-    const isAdmin = true; // Hardcoded for now; will be dynamic with backend
+    const isAdmin = true; // Placeholder; will be replaced with backend auth
     if (isAdmin) document.body.classList.add('admin');
 
-    // Load threads from localStorage (temporary, will switch to backend)
     window.onload = function() {
       const threads = JSON.parse(localStorage.getItem('forumThreads')) || [];
       threads.forEach(thread => renderThread(thread));
