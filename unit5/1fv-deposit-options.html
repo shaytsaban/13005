@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📊 Unit 5 Questions - FV and PV 🌟</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Arial', sans-serif; background: linear-gradient(to bottom, #f5f5f5, #e8ecef); color: #2d3748; line-height: 1.6; padding-bottom: 50px; }
+    header { background: linear-gradient(135deg, #007bff, #0056b3); color: #fff; padding: 25px 0; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-bottom: 3px solid #ffca28; }
+    header h1 { font-size: 2.5em; margin-bottom: 8px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+    header p { font-size: 1.2em; opacity: 0.9; }
+    .nav-bar { margin-top: 20px; position: relative; }
+    .nav-bar a { color: #fff; text-decoration: none; padding: 12px 25px; font-size: 1.1em; background: rgba(255,255,255,0.1); border-radius: 25px; margin: 0 10px; transition: all 0.3s ease; }
+    .nav-bar a:hover { background: #ffca28; color: #0056b3; transform: scale(1.05); }
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background: #fff; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 1; top: 100%; left: 50%; transform: translateX(-50%); }
+    .dropdown-content a { color: #2d3748; padding: 10px 15px; display: block; background: none; text-align: left; border-radius: 0; margin: 0; font-size: 1em; }
+    .dropdown-content a:hover { background: #ffca28; color: #0056b3; transform: none; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .container { max-width: 1000px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    h2 { color: #007bff; font-size: 1.8em; margin-bottom: 15px; border-bottom: 2px solid #ffca28; padding-bottom: 5px; }
+    h3 { color: #0056b3; font-size: 1.4em; margin-bottom: 8px; }
+    p { margin-bottom: 20px; font-size: 1.1em; }
+    ul { margin-left: 25px; margin-bottom: 20px; }
+    ul li { margin-bottom: 15px; line-height: 1.8; }
+    .math { font-family: 'Courier New', Courier, monospace; background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0; font-size: 1.05em; display: block; }
+    footer { text-align: center; padding: 20px; background: #edf2f7; font-size: 1em; margin-top: 40px; border-top: 2px solid #ffca28; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📊 Unit 5 Questions - FV and PV 🌟</h1>
+    <p>🎓 Financial Management 13005 | Explore Future and Present Value Concepts 💰</p>
+    <div class="nav-bar">
+      <a href="./index.html">🏠 Home</a>
+      <a href="./forum.html">💬 Discussion Forum</a>
+      <div class="dropdown">
+        <a href="./questions.html">❓ Questions by Units</a>
+        <div class="dropdown-content">
+          <a href="./unit5questions.html">📊 Unit 5 - FV and PV</a>
+          <a href="#">🏭 Unit 6 - Projects</a>
+          <a href="#">💸 Unit 7 - Cash Flows</a>
+          <a href="#">⚠️ Unit 8 - Risk Management</a>
+          <a href="#">🏢 Unit 9-11 - Capital Structure</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Question 1 - Investment Options Analysis, Using FV Calculations</h2>
+      <p>
+        An investor commits to depositing 5,000 ILS at the start of each year for 7 years. They must choose between two savings plans:<br>
+        - <strong>Option A:</strong> A savings account with a fixed annual interest rate of 5%.<br>
+        - <strong>Option B:</strong> A savings account with variable rates: 3% per year for the first 3 years, 8% per year for years 4 and 5, and 4.5% per year for years 6 and 7.<br>
+        Assuming the investor makes a rational decision, what is the maximum amount they can expect to accumulate after 7 years?
+      </p>
+
+      <h3>📝 Solution & Explanation:</h3>
+      <p>
+        This problem requires calculating the <strong>Future Value (FV)</strong> of an annuity due, as payments are made at the beginning of each year. We’ll evaluate both options to determine the maximum FV, breaking down the calculations with clear steps and equations. The first payment is made at time t=0 (start of year 1), and the FV is assessed at the end of year 7 (t=7).
+      </p>
+
+      <h3>Option A: Fixed 5% Interest Rate</h3>
+      <p>
+        For a constant 5% annual interest rate over 7 years with 5,000 ILS deposited annually at the start, we use the FV of an annuity due formula:
+      </p>
+      <p class="math">
+        FV = PMT × [(1 + r)^t - 1] / r
+      </p>
+      <p>
+        Where:<br>
+        - PMT = 5,000 ILS (annual payment)<br>
+        - r = 0.05 (5% interest rate)<br>
+        - t = 7 (number of years)<br>
+        Note: This formula provides the FV as of the last deposit date (end of year 6 in this case). Since the investor withdraws the funds at the end of year 7, an adjustment is required to compound the value forward one additional year using (1 + r)^t, where t = 1.
+      </p>
+      <p class="math">
+        FV at end of year 6 = 5,000 × [(1.05)^7 - 1] / 0.05<br>
+        = 5,000 × [1.407100422 - 1] / 0.05<br>
+        = 5,000 × 0.407100422 / 0.05<br>
+        = 5,000 × 8.14200844<br>
+        = 40,710.04 ILS
+      </p>
+      <p>
+        Adjust to end of year 7:
+      </p>
+      <p class="math">
+        FV at end of year 7 = 40,710.04 × (1.05)^1<br>
+        = 40,710.04 × 1.05<br>
+        = 42,745.54 ILS
+      </p>
+      <p>
+        Thus, Option A results in approximately <strong>42,745.54 ILS</strong> after 7 years.
+      </p>
+
+      <h3>Option B: Variable Interest Rates</h3>
+      <p>
+        Option B features variable rates over the 7-year period, applied as follows:<br>
+        - Years 1-3 (t=0 to t=3): 3%<br>
+        - Years 4-5 (t=3 to t=5): 8%<br>
+        - Years 6-7 (t=5 to t=7): 4.5%<br>
+        Each payment is made at the start of a year and compounds to the end of year 7 (t=7) based on the rates for the years it spans.
+      </p>
+      <p>
+        FV for each payment:
+      </p>
+      <ul>
+        <li><strong>Payment at t=0 (start of year 1):</strong> 7 years (3 years at 3%, 2 years at 8%, 2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.03)^3 × (1.08)^2 × (1.045)^2<br>
+          = 5,000 × 1.092727 × 1.1664 × 1.092025<br>
+          = 5,000 × 1.392497<br>
+          = 6,962.49 ILS</div></li>
+        <li><strong>Payment at t=1 (start of year 2):</strong> 6 years (2 years at 3%, 2 years at 8%, 2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.03)^2 × (1.08)^2 × (1.045)^2<br>
+          = 5,000 × 1.0609 × 1.1664 × 1.092025<br>
+          = 5,000 × 1.352425<br>
+          = 6,762.12 ILS</div></li>
+        <li><strong>Payment at t=2 (start of year 3):</strong> 5 years (1 year at 3%, 2 years at 8%, 2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.03) × (1.08)^2 × (1.045)^2<br>
+          = 5,000 × 1.03 × 1.1664 × 1.092025<br>
+          = 5,000 × 1.311094<br>
+          = 6,555.47 ILS</div></li>
+        <li><strong>Payment at t=3 (start of year 4):</strong> 4 years (2 years at 8%, 2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.08)^2 × (1.045)^2<br>
+          = 5,000 × 1.1664 × 1.092025<br>
+          = 5,000 × 1.273879<br>
+          = 6,369.40 ILS</div></li>
+        <li><strong>Payment at t=4 (start of year 5):</strong> 3 years (1 year at 8%, 2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.08) × (1.045)^2<br>
+          = 5,000 × 1.08 × 1.092025<br>
+          = 5,000 × 1.179267<br>
+          = 5,896.34 ILS</div></li>
+        <li><strong>Payment at t=5 (start of year 6):</strong> 2 years (2 years at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.045)^2<br>
+          = 5,000 × 1.092025<br>
+          = 5,460.12 ILS</div></li>
+        <li><strong>Payment at t=6 (start of year 7):</strong> 1 year (1 year at 4.5%)<br>
+          <div class="math">FV = 5,000 × (1.045)<br>
+          = 5,225.00 ILS</div></li>
+      </ul>
+      <p>
+        Total FV for Option B:
+      </p>
+      <p class="math">
+        FV_B = 6,962.49 + 6,762.12 + 6,555.47 + 6,369.40 + 5,896.34 + 5,460.12 + 5,225.00<br>
+        = 43,230.94 ILS
+      </p>
+      <p>
+        Thus, Option B yields approximately <strong>43,230.94 ILS</strong> after 7 years.
+      </p>
+
+      <h3>🎯 Conclusion</h3>
+      <p>
+        Comparing the results:<br>
+        - Option A: 42,745.54 ILS<br>
+        - Option B: 43,230.94 ILS<br>
+        The rational choice is <strong>Option B</strong>, offering the maximum amount of <strong>43,230.94 ILS</strong> after 7 years.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    Crafted with ❤️, dedication, and a passion for stellar financial education! 🌟<br>
+    Happy Studying, Future Finance Wizards! 🚀📚✨
+  </footer>
+</body>
+</html>
