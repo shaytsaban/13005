@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Management – 13005 (Summer 2025 C)</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Brand palette */
+      --clr-primary: #0984e3;
+      --clr-primary-dark: #0652dd;
+      --clr-accent: #fdcb6e;
+      --clr-bg-light: #f8fbff;
+      --clr-text: #2d3436;
+
+      /* Effects */
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-lg: 0 12px 35px rgba(0, 0, 0, 0.15);
+      --shadow-sm: 0 6px 20px rgba(0, 0, 0, 0.08);
+      --transition: 0.35s ease;
+    }
+
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--clr-bg-light);
+      color: var(--clr-text);
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--clr-primary-dark), var(--clr-primary));
+      color: #fff;
+      padding: 3.5rem 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      animation: pulse 6s infinite alternate;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 12px 28px rgba(9,132,227,0.4); }
+      100% { box-shadow: 0 12px 42px rgba(9,132,227,0.6); }
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      margin-bottom: 0.6rem;
+    }
+    .hero p { font-size: 1.15rem; }
+
+    /* Main Card */
+    .card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .card h2 {
+      font-size: 1.9rem;
+      color: var(--clr-primary-dark);
+      margin-bottom: 1rem;
+    }
+    .card p { margin-bottom: 1.1rem; }
+
+    /* CTA Button */
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(45deg, var(--clr-accent), var(--clr-primary));
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 1.2rem 3.2rem;
+      border-radius: 60px;
+      box-shadow: 0 8px 24px rgba(253, 203, 110, 0.5);
+      font-size: 1.1rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn span {
+      position: relative; /* create stacking context */
+    }
+    .cta-btn::before {
+      content: "📥";
+      position: absolute;
+      left: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: left var(--transition), opacity var(--transition);
+    }
+    .cta-btn:hover {
+      transform: scale(1.06) translateY(-3px);
+      box-shadow: 0 12px 30px rgba(9, 132, 227, 0.45);
+    }
+    .cta-btn:hover::before {
+      left: 20px;
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #636e72;
+    }
+    footer a { color: var(--clr-primary-dark); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Financial Management – Course 13005</h1>
+    <p>Summer Semester 2025 C · Open University of Israel</p>
+  </header>
+
+  <main class="card">
+    <h2>Welcome to the Course</h2>
+    <p>
+      <strong>Instructor:</strong> Dr. Shay Tsaban (<a href="mailto:shay.tsaban@gmail.com">shay.tsaban@gmail.com</a>)
+    </p>
+    <p>
+      In this intensive summer program you’ll explore the core principles of modern
+      financial management—from capital budgeting and risk assessment to
+      valuation and strategic financing decisions. Each meeting blends theory
+      with hands‑on exercises drawn from real‑world business cases, equipping you
+      with the tools and confidence to make sound financial choices.
+    </p>
+    <p>
+      All class slides, problem sets, and worked solutions are bundled together
+      in a streamlined “Lean Coursebook.” Download it below and keep it handy
+      throughout the semester.
+    </p>
+
+    <p style="text-align:center; margin-top:2.2rem;">
+      <a class="cta-btn" href="Lean%20coursebook%2013005%20-%202025%20C.pdf" download>
+        <span>Get the Lean Coursebook 📑</span>
+      </a>
+    </p>
+  </main>
+
+  <footer>
+    © 2025 Dr. Shay Tsaban · Last updated July 15 2025
+  </footer>
+</body>
+</html>
