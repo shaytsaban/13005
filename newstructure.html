@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עדכונים ותוספות לשאלות הקורס</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0f1923;
+    --bg-secondary: #162330;
+    --bg-card: #1a2d3f;
+    --bg-card-hover: #1f3549;
+    --accent-gold: #e8b84b;
+    --accent-gold-dim: rgba(232, 184, 75, 0.15);
+    --accent-teal: #3ecfb4;
+    --accent-teal-dim: rgba(62, 207, 180, 0.1);
+    --accent-blue: #4a9eff;
+    --accent-blue-dim: rgba(74, 158, 255, 0.1);
+    --accent-rose: #f2728c;
+    --accent-rose-dim: rgba(242, 114, 140, 0.1);
+    --accent-violet: #a78bfa;
+    --accent-violet-dim: rgba(167, 139, 250, 0.1);
+    --text-primary: #e8edf3;
+    --text-secondary: #8fa3b8;
+    --text-muted: #5a7089;
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(232, 184, 75, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: -20%;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(232,184,75,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -30%;
+    right: -20%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(62,207,180,0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  }
+
+  .header-label {
+    display: inline-block;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    background: var(--accent-gold-dim);
+    padding: 0.4rem 1.4rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(232,184,75,0.2);
+  }
+
+  .header h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.5px;
+  }
+  .header h1 span {
+    background: linear-gradient(135deg, var(--accent-gold), #f0d078);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    position: relative;
+    padding-right: 2px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      var(--accent-gold) 0%,
+      var(--accent-teal) 30%,
+      var(--accent-blue) 55%,
+      var(--accent-rose) 75%,
+      var(--accent-violet) 100%
+    );
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+
+  /* ── Section / Unit Card ── */
+  .unit-section {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-right: 56px;
+    animation: fadeSlideIn 0.6s ease both;
+  }
+  .unit-section:nth-child(1) { animation-delay: 0.1s; }
+  .unit-section:nth-child(2) { animation-delay: 0.2s; }
+  .unit-section:nth-child(3) { animation-delay: 0.3s; }
+  .unit-section:nth-child(4) { animation-delay: 0.4s; }
+  .unit-section:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Timeline dot */
+  .unit-section::before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 28px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid;
+    background: var(--bg-primary);
+    z-index: 2;
+  }
+  .unit-section.gold::before { border-color: var(--accent-gold); box-shadow: 0 0 12px rgba(232,184,75,0.3); }
+  .unit-section.teal::before { border-color: var(--accent-teal); box-shadow: 0 0 12px rgba(62,207,180,0.3); }
+  .unit-section.blue::before { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(74,158,255,0.3); }
+  .unit-section.rose::before { border-color: var(--accent-rose); box-shadow: 0 0 12px rgba(242,114,140,0.3); }
+  .unit-section.violet::before { border-color: var(--accent-violet); box-shadow: 0 0 12px rgba(167,139,250,0.3); }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  /* Color stripe on card top */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; left: 0;
+    height: 3px;
+  }
+  .gold .card::before { background: linear-gradient(90deg, var(--accent-gold), transparent); }
+  .teal .card::before { background: linear-gradient(90deg, var(--accent-teal), transparent); }
+  .blue .card::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+  .rose .card::before { background: linear-gradient(90deg, var(--accent-rose), transparent); }
+  .violet .card::before { background: linear-gradient(90deg, var(--accent-violet), transparent); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .unit-badge {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 0.3rem 0.9rem;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .gold .unit-badge { background: var(--accent-gold-dim); color: var(--accent-gold); border: 1px solid rgba(232,184,75,0.2); }
+  .teal .unit-badge { background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(62,207,180,0.2); }
+  .blue .unit-badge { background: var(--accent-blue-dim); color: var(--accent-blue); border: 1px solid rgba(74,158,255,0.2); }
+  .rose .unit-badge { background: var(--accent-rose-dim); color: var(--accent-rose); border: 1px solid rgba(242,114,140,0.2); }
+  .violet .unit-badge { background: var(--accent-violet-dim); color: var(--accent-violet); border: 1px solid rgba(167,139,250,0.2); }
+
+  .meetings-tag {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .meetings-tag svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+  }
+
+  .card h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 1.2rem 0 0.6rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card h3::before {
+    content: '◆';
+    font-size: 0.55rem;
+    opacity: 0.4;
+  }
+
+  .card p, .card li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+  .card ul li {
+    position: relative;
+    padding-right: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .card ul li::before {
+    content: '–';
+    position: absolute;
+    right: 0;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* Highlight chips */
+  .highlight {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .hl-removed {
+    background: rgba(239,68,68,0.12);
+    color: #f87171;
+    text-decoration: line-through;
+    text-decoration-color: rgba(248,113,113,0.4);
+  }
+  .hl-important {
+    background: rgba(251,191,36,0.12);
+    color: #fbbf24;
+  }
+  .hl-new {
+    background: rgba(52,211,153,0.12);
+    color: #34d399;
+  }
+
+  /* ── Cash Flow Table ── */
+  .table-wrapper {
+    margin: 1.2rem 0 0.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .table-wrapper thead {
+    background: rgba(255,255,255,0.04);
+  }
+  .table-wrapper th {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+  }
+  .table-wrapper th:first-child {
+    text-align: right;
+    min-width: 140px;
+  }
+  .table-wrapper td {
+    padding: 0.6rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    font-weight: 300;
+    font-family: 'Rubik', monospace;
+  }
+  .table-wrapper td:first-child {
+    text-align: right;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 400;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+  }
+  .table-wrapper tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+  .table-wrapper .row-section-label td {
+    padding-top: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    font-family: 'Heebo', sans-serif;
+    border-bottom: none;
+  }
+  .table-wrapper .total-row td {
+    border-top: 2px solid rgba(232,184,75,0.2);
+    font-weight: 600;
+    color: var(--accent-gold);
+    padding-top: 0.8rem;
+  }
+  .neg { color: var(--accent-rose) !important; }
+
+  /* ── Key Principle Box ── */
+  .principle-box {
+    background: rgba(232,184,75,0.05);
+    border: 1px solid rgba(232,184,75,0.15);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0 0.5rem;
+  }
+  .principle-box p {
+    color: var(--accent-gold) !important;
+    font-weight: 400 !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 300;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .container { padding: 2rem 1rem; }
+    .header h1 { font-size: 1.8rem; }
+    .unit-section { padding-right: 44px; }
+    .timeline::before { right: 14px; }
+    .unit-section::before { right: 6px; width: 14px; height: 14px; }
+    .card { padding: 1.4rem 1.2rem; }
+    .card h2 { font-size: 1.15rem; }
+    .table-wrapper { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ═══════ Header ═══════ -->
+  <header class="header">
+    <div class="header-label">סיכום מסמך עדכונים</div>
+    <h1>עדכונים ושאלות נוספות <span>לקורס מימון</span></h1>
+    <p>מיפוי מלא של השינויים, התוספות והדגשים לפי יחידות הלימוד — כולל מבנה מפגשים, נושאים שהוסרו, ונושאים חדשים שנוספו.</p>
+  </header>
+
+  <!-- ═══════ Timeline ═══════ -->
+  <div class="timeline">
+
+    <!-- ── Unit 2-4 ── -->
+    <section class="unit-section gold">
+      <div class="card">
+        <div class="card-header">
+          <span class="unit-badge">יחידות 2–4</span>
+          <span class="meetings-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2 מפגשים
+          </span>
+        </div>
+        <h2>ערך הזמן של הכסף — ללא טבלאות היוון</h2>
+
+        <div class="principle-box">
+          <p>🔑 עיקרון מנחה: אין שימוש בטבלאות היוון. כל השאלות חייבות להתייחס להיעדר הטבלאות מהיבט חילוץ הנתונים.</p>
+        </div>
+
+        <h3>נושאים להוספה מיידית</h3>
+        <ul>
+          <li><span class="highlight hl-new">חדש</span> ערך נוכחי של סדרה אינסופית צומחת (מודל גורדון) — <strong>לא נדחה</strong>, מוסיפים כבר עכשיו.</li>
+          <li><span class="highlight hl-new">חדש</span> אינפלציה ומשוואת פישר — ריבית נומינלית מול ריבית ריאלית. הדגש על ערכים באחוזים בלבד, ולא על הצמדת ערכים בטבלאות וכדומה.</li>
+          <li><span class="highlight hl-new">חדש</span> אגרות חוב צמודות — להוסיף דוגמה קטנה לאג"ח צמודה: חישוב רגיל ללא הצמדה, וחישוב עם תוספת הצמדה.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Unit 5-6 ── -->
+    <section class="unit-section teal">
+      <div class="card">
+        <div class="card-header">
+          <span class="unit-badge">יחידות 5–6</span>
+          <span class="meetings-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            1–1.5 מפגשים · מצטבר: 3.5
+          </span>
+        </div>
+        <h2>הערכת פרויקטים השקעתיים</h2>
+
+        <h3>נושאים שהוסרו</h3>
+        <ul>
+          <li><span class="highlight hl-removed">הושמט</span> השוואת אופקים (Horizon Comparison)</li>
+          <li><span class="highlight hl-removed">הושמט</span> החזר הון שנתי (Annual Capital Recovery)</li>
+        </ul>
+
+        <h3>נושאים שנשמרים ודגשים</h3>
+        <ul>
+          <li><span class="highlight hl-important">חשוב</span> מדד רווחיות (PI) — חשוב במיוחד להציג כשקיימת מגבלת תקציב.</li>
+          <li>היעדר טבלאות היוון → חישוב NPV יכול להיות עד <strong>2 תקופות</strong> בלבד.</li>
+          <li>כדאי לייצר ברמת ההצגה דוגמאות של <strong>ניסוי וטעייה</strong> (Trial & Error) לחישוב IRR.</li>
+          <li>דיון כרגיל: כל סוגי הפרויקטים, מערכות יחסים בין פרויקטים, וכדומה.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Unit 6 – Cash Flows ── -->
+    <section class="unit-section blue">
+      <div class="card">
+        <div class="card-header">
+          <span class="unit-badge">יחידה 6</span>
+          <span class="meetings-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            חלק מהמפגשים הקודמים
+          </span>
+        </div>
+        <h2>בניית תזרימי מזומנים שנתיים</h2>
+        <p>יש להישען על התבנית שלהלן. ביחס למכירת רכוש קבוע — ייתכן ותבוצע המלצה לפתרון שונה (ראו את שורת "מימוש רכוש קבוע" בטבלה).</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>סעיף</th>
+                <th>שנה 0</th>
+                <th>שנה 1</th>
+                <th>שנה 2</th>
+                <th>שנה 3</th>
+                <th>שנה 4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>הכנסות</td>
+                <td></td>
+                <td>100</td>
+                <td>100</td>
+                <td>100</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>הוצאות תפעוליות</td>
+                <td></td>
+                <td class="neg">(45)</td>
+                <td class="neg">(45)</td>
+                <td class="neg">(45)</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>פחת</td>
+                <td></td>
+                <td class="neg">(30)</td>
+                <td class="neg">(30)</td>
+                <td class="neg">(30)</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>רווח הון</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>רווח לפני מס</td>
+                <td></td>
+                <td>25</td>
+                <td>25</td>
+                <td>33</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>מסים (25%)</td>
+                <td></td>
+                <td class="neg">(6.25)</td>
+                <td class="neg">(6.25)</td>
+                <td class="neg">(8.25)</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>רווח לאחר מס</td>
+                <td></td>
+                <td>18.75</td>
+                <td>18.75</td>
+                <td>24.75</td>
+                <td></td>
+              </tr>
+
+              <tr class="row-section-label"><td colspan="6">── התאמות ──</td></tr>
+
+              <tr>
+                <td>רכישת רכוש קבוע (פס ייצור)</td>
+                <td class="neg">(120)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>השבת פחת</td>
+                <td></td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>מימוש רכוש קבוע</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>30</td>
+              </tr>
+
+              <tr class="total-row">
+                <td>תזרים מזומנים נקי</td>
+                <td class="neg">(120)</td>
+                <td>48.75</td>
+                <td>48.75</td>
+                <td>84.75</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem;">* הסכומים במיליוני שקלים</p>
+      </div>
+    </section>
+
+    <!-- ── Unit 7-8 ── -->
+    <section class="unit-section rose">
+      <div class="card">
+        <div class="card-header">
+          <span class="unit-badge">יחידות 7–8</span>
+          <span class="meetings-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2 מפגשים · מצטבר: 5.5
+          </span>
+        </div>
+        <h2>עולם עם סיכון — תיק השקעות ומודל CAPM</h2>
+
+        <h3>עקרון כללי</h3>
+        <p>כל הנושאים בתוקף בעיקרון. הנושאים נשמרים כפי שהיו.</p>
+
+        <h3>תוספות ודגשים</h3>
+        <ul>
+          <li><span class="highlight hl-new">חדש</span> להכניס התייחסות ל<strong>מכירה בחסר</strong> (Short Selling).</li>
+          <li><span class="highlight hl-new">חדש</span> להוסיף סעיף ל<strong>תוחלת</strong> (Expected Value) וגם ל<strong>בטאות משוקללות</strong> — בטא של תיק כממוצע משוקלל של בטאות הנכסים.</li>
+          <li><span class="highlight hl-important">המשכיות</span> נושא הבטא המשוקללת יתחבר ישירות למחיר ההון ביחידות 10–11, ויצור רצף לימודי ברור.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Unit 10-11 ── -->
+    <section class="unit-section violet">
+      <div class="card">
+        <div class="card-header">
+          <span class="unit-badge">יחידות 10–11</span>
+          <span class="meetings-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2 מפגשים · מצטבר: 7.5
+          </span>
+        </div>
+        <h2>מבנה הון, שווי חברה ו-WACC</h2>
+
+        <h3>נקודת פתיחה</h3>
+        <p>מתחילים מהגדרת שווי חברה: <strong>E + D</strong> (הון עצמי + חוב). החוב מחושב כהיוון תזרימי המזומנים הנובעים מהאג"ח עצמה (כבר טופל ביחידות הראשונות).</p>
+
+        <h3>שינויים ודגשים מרכזיים</h3>
+        <ul>
+          <li><span class="highlight hl-new">חדש</span> שימוש ב-<strong>EBIT</strong> במקום NOI.</li>
+          <li><span class="highlight hl-important">מפתח</span> חישוב מחיר הון משוקלל על בסיס לילקול בטא — <strong>בטא חוב</strong> ו<strong>בטא הון עצמי</strong> כ"בטא נכסים".</li>
+          <li>שימוש ב-<strong>SML</strong> (Security Market Line) לחישוב מחיר ההון המשוקלל לנכסים, על בסיס בטא נכסים.</li>
+        </ul>
+
+        <h3>המשך — הגדרה קונבנציונלית</h3>
+        <ul>
+          <li>לאחר מכן ממשיכים ל-<strong>WACC</strong> כהגדרתו הקונבנציונלית הרגילה.</li>
+          <li>מודל <strong>מודיליאני–מילר</strong> — עם מס וללא מס.</li>
+          <li>ארביטראז' ונושאים נוספים.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div><!-- /timeline -->
+
+  <footer class="footer">
+    סיכום מסמך עדכונים · מבוסס על הנחיות להוספת שאלות לקורס מימון
+  </footer>
+
+</div><!-- /container -->
+
+</body>
+</html>
