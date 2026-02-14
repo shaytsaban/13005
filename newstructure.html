@@ -21,6 +21,8 @@
     --accent-rose-dim: rgba(242, 114, 140, 0.1);
     --accent-violet: #a78bfa;
     --accent-violet-dim: rgba(167, 139, 250, 0.1);
+    --accent-orange: #f59e0b;
+    --accent-orange-dim: rgba(245, 158, 11, 0.1);
     --text-primary: #e8edf3;
     --text-secondary: #8fa3b8;
     --text-muted: #5a7089;
@@ -162,6 +164,7 @@
   .unit-section:nth-child(3) { animation-delay: 0.3s; }
   .unit-section:nth-child(4) { animation-delay: 0.4s; }
   .unit-section:nth-child(5) { animation-delay: 0.5s; }
+  .unit-section:nth-child(6) { animation-delay: 0.6s; }
 
   @keyframes fadeSlideIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -322,6 +325,19 @@
     background: rgba(52,211,153,0.12);
     color: #34d399;
   }
+  .hl-enrichment {
+    background: rgba(148,163,184,0.12);
+    color: #94a3b8;
+    font-style: italic;
+  }
+  .hl-changed {
+    background: rgba(251,146,60,0.14);
+    color: #fb923c;
+  }
+  .hl-link {
+    background: rgba(167,139,250,0.12);
+    color: #a78bfa;
+  }
 
   /* ── Cash Flow Table ── */
   .table-wrapper {
@@ -400,6 +416,116 @@
     font-size: 0.92rem !important;
   }
 
+  /* ── Info / Enrichment callout box ── */
+  .info-box {
+    background: rgba(148,163,184,0.05);
+    border: 1px solid rgba(148,163,184,0.15);
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    margin: 0.8rem 0 0.5rem;
+  }
+  .info-box p {
+    color: #94a3b8 !important;
+    font-weight: 300 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.8 !important;
+  }
+  .info-box .info-label {
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+    display: block;
+    opacity: 0.7;
+  }
+
+  /* Link / continuity callout */
+  .link-box {
+    background: rgba(167,139,250,0.05);
+    border: 1px solid rgba(167,139,250,0.15);
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    margin: 0.8rem 0 0.5rem;
+  }
+  .link-box p {
+    color: var(--accent-violet) !important;
+    font-weight: 400 !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* Changed material callout */
+  .changed-box {
+    background: rgba(251,146,60,0.06);
+    border: 1px solid rgba(251,146,60,0.18);
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    margin: 1rem 0 0.5rem;
+  }
+  .changed-box p {
+    color: #fb923c !important;
+    font-weight: 400 !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* ── Method comparison mini-cards ── */
+  .method-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .method-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+  }
+  .method-card.preferred {
+    border-color: rgba(62,207,180,0.25);
+    background: rgba(62,207,180,0.04);
+  }
+  .method-card h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .method-card.preferred h4 {
+    color: var(--accent-teal);
+  }
+  .method-card p, .method-card li {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .method-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .method-card ul li {
+    padding-right: 1rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+  }
+  .method-card ul li::before {
+    content: '›';
+    position: absolute;
+    right: 0;
+    color: var(--text-muted);
+  }
+  .pref-tag {
+    font-size: 0.68rem;
+    background: rgba(62,207,180,0.15);
+    color: var(--accent-teal);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
   /* ── Footer ── */
   .footer {
     text-align: center;
@@ -421,6 +547,7 @@
     .card { padding: 1.4rem 1.2rem; }
     .card h2 { font-size: 1.15rem; }
     .table-wrapper { font-size: 0.8rem; }
+    .method-compare { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -432,13 +559,15 @@
   <header class="header">
     <div class="header-label">סיכום מסמך עדכונים</div>
     <h1>עדכונים ושאלות נוספות <span>לקורס מימון</span></h1>
-    <p>מיפוי מלא של השינויים, התוספות והדגשים לפי יחידות הלימוד — כולל מבנה מפגשים, נושאים שהוסרו, ונושאים חדשים שנוספו.</p>
+    <p>מיפוי מלא של השינויים, התוספות והדגשים לפי יחידות הלימוד — כולל מבנה מפגשים, נושאים שהוסרו, נושאים חדשים שנוספו, והמלצות פדגוגיות לקישור בין-יחידתי.</p>
   </header>
 
   <!-- ═══════ Timeline ═══════ -->
   <div class="timeline">
 
+    <!-- ══════════════════════════════════ -->
     <!-- ── Unit 2-4 ── -->
+    <!-- ══════════════════════════════════ -->
     <section class="unit-section gold">
       <div class="card">
         <div class="card-header">
@@ -454,16 +583,37 @@
           <p>🔑 עיקרון מנחה: אין שימוש בטבלאות היוון. כל השאלות חייבות להתייחס להיעדר הטבלאות מהיבט חילוץ הנתונים.</p>
         </div>
 
+        <div class="changed-box">
+          <p>⚠️ <strong>הערה כללית — שינוי סימונים:</strong> יש לשים לב לשינויי הסימונים שבוצעו ביחידות אלה. חשוב לעדכן את כל התרגילים והדוגמאות בהתאם לסימון החדש.</p>
+        </div>
+
         <h3>נושאים להוספה מיידית</h3>
         <ul>
-          <li><span class="highlight hl-new">חדש</span> ערך נוכחי של סדרה אינסופית צומחת (מודל גורדון) — <strong>לא נדחה</strong>, מוסיפים כבר עכשיו.</li>
-          <li><span class="highlight hl-new">חדש</span> אינפלציה ומשוואת פישר — ריבית נומינלית מול ריבית ריאלית. הדגש על ערכים באחוזים בלבד, ולא על הצמדת ערכים בטבלאות וכדומה.</li>
-          <li><span class="highlight hl-new">חדש</span> אגרות חוב צמודות — להוסיף דוגמה קטנה לאג"ח צמודה: חישוב רגיל ללא הצמדה, וחישוב עם תוספת הצמדה.</li>
+          <li><span class="highlight hl-new">חדש</span> <strong>ערך נוכחי של סדרה אינסופית צומחת (מודל גורדון)</strong> — <strong>לא נדחה</strong>, מוסיפים כבר עכשיו. הנוסחה מוצגת ביחידה 2; <span class="highlight hl-link">קישור</span> מומלץ כבר כאן לנושא <strong>מניות</strong> ולציין שמדובר למעשה ב<strong>מודל גורדון</strong>. לקראת סיום הסמסטר (יחידה 10) ייעשה חיבור חוזר לנושא.</li>
+          <li><span class="highlight hl-new">חדש</span> <strong>אינפלציה ומשוואת פישר</strong> — ריבית נומינלית מול ריבית ריאלית. הדגש על ערכים באחוזים בלבד, ולא על הצמדת ערכים בטבלאות וכדומה.</li>
+          <li><span class="highlight hl-new">חדש</span> <strong>אגרות חוב</strong> — הנושא התווסף כאן מאחר ובסופו של דבר מדובר בהלוואות והיוונים. להוסיף דוגמה קטנה לאג"ח צמודה: חישוב רגיל ללא הצמדה, וחישוב עם תוספת הצמדה.</li>
+          <li><span class="highlight hl-link">קישור</span> להוסיף כבר כאן <strong>הסבר להבדל בין אג"ח קונצרנית לאג"ח מדינה</strong> ולהזכיר את נושא <strong>דירוג אגרות חוב</strong> (הנושא מופיע ביחידה 10, אך מומלץ "לסגור" את מושג הסיכון כבר בשלב זה, גם אם טרם הגענו פורמלית לאי-ודאות).</li>
         </ul>
+
+        <h3>מושגים להזכרה (ללא חישוב)</h3>
+        <ul>
+          <li><span class="highlight hl-important">חשוב</span> <strong>מח"מ (Duration)</strong> — הנושא הועבר להעשרה, אך עדיין נדרש להזכיר את המושג ואת המשמעות שלו. אין צורך להיכנס לחישוב המח"מ.</li>
+        </ul>
+
+        <h3>נושאים שהועברו להעשרה</h3>
+        <div class="info-box">
+          <span class="info-label">העשרה = לא נדרש במפגשים ולא יופיע בבחינה</span>
+          <p>
+            <span class="highlight hl-enrichment">העשרה</span> <strong>סדרה סופית צומחת</strong> — הועבר לנושאי העשרה.<br>
+            <span class="highlight hl-enrichment">העשרה</span> <strong>לוחות סילוקין צמודים</strong> — הועבר לנושאי העשרה.
+          </p>
+        </div>
       </div>
     </section>
 
+    <!-- ══════════════════════════════════ -->
     <!-- ── Unit 5-6 ── -->
+    <!-- ══════════════════════════════════ -->
     <section class="unit-section teal">
       <div class="card">
         <div class="card-header">
@@ -483,15 +633,17 @@
 
         <h3>נושאים שנשמרים ודגשים</h3>
         <ul>
-          <li><span class="highlight hl-important">חשוב</span> מדד רווחיות (PI) — חשוב במיוחד להציג כשקיימת מגבלת תקציב.</li>
-          <li>היעדר טבלאות היוון → חישוב NPV יכול להיות עד <strong>2 תקופות</strong> בלבד.</li>
-          <li>כדאי לייצר ברמת ההצגה דוגמאות של <strong>ניסוי וטעייה</strong> (Trial & Error) לחישוב IRR.</li>
+          <li><span class="highlight hl-important">חשוב</span> <strong>מדד רווחיות (PI)</strong> — חשוב במיוחד להציג כשקיימת מגבלת תקציב. <span class="highlight hl-changed">שינוי בנוסחה</span> — לשים לב: הקריטריון הוא גדול/קטן מ-<strong>0</strong> (ולא מ-1 כפי שהיה).</li>
+          <li><strong>חישוב NPV — הבהרה:</strong> ניתן לחשב ענ"נ גם עבור יותר מ-2 תקופות, באמצעות נוסחת PVFA או היוון של סכומים חד-פעמיים. היעדר טבלאות ההיוון רלוונטי דווקא ל<strong>חישוב השת"פ (IRR)</strong> — שם המגבלה היא עד 2 תקופות בלבד.</li>
+          <li>כדאי לייצר ברמת ההצגה דוגמאות של <strong>ניסוי וטעייה</strong> (Trial & Error) לחישוב IRR ולהסביר את תהליך הניסוי וטעייה בפירוט.</li>
           <li>דיון כרגיל: כל סוגי הפרויקטים, מערכות יחסים בין פרויקטים, וכדומה.</li>
         </ul>
       </div>
     </section>
 
+    <!-- ══════════════════════════════════ -->
     <!-- ── Unit 6 – Cash Flows ── -->
+    <!-- ══════════════════════════════════ -->
     <section class="unit-section blue">
       <div class="card">
         <div class="card-header">
@@ -502,7 +654,12 @@
           </span>
         </div>
         <h2>בניית תזרימי מזומנים שנתיים</h2>
-        <p>יש להישען על התבנית שלהלן. ביחס למכירת רכוש קבוע — ייתכן ותבוצע המלצה לפתרון שונה (ראו את שורת "מימוש רכוש קבוע" בטבלה).</p>
+
+        <div class="changed-box">
+          <p>⚠️ <strong>שינוי מהותי:</strong> החומר ביחידה זו השתנה באופן משמעותי. יש להקדיש תשומת לב מיוחדת לשינויים בטיפול במכירת רכוש קבוע ובהון חוזר.</p>
+        </div>
+
+        <p>יש להישען על התבנית שלהלן. ביחס למכירת רכוש קבוע — ראו להלן שתי שיטות מוצעות לטיפול בהתחשבנות מס.</p>
 
         <div class="table-wrapper">
           <table>
@@ -593,6 +750,14 @@
                 <td></td>
               </tr>
               <tr>
+                <td>שינויים בהון חוזר</td>
+                <td></td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td></td>
+              </tr>
+              <tr>
                 <td>מימוש רכוש קבוע</td>
                 <td></td>
                 <td></td>
@@ -613,10 +778,39 @@
           </table>
         </div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem;">* הסכומים במיליוני שקלים</p>
+
+        <h3>טיפול במכירת רכוש קבוע — שתי שיטות</h3>
+        <p style="margin-bottom:0.6rem;">מומלץ להציג את שתי השיטות לטיפול במכירה והתחשבנות מס. השיטה השנייה מועדפת — היא סיסטמטית יותר ודומה באופייה לטיפול בפחת.</p>
+
+        <div class="method-compare">
+          <div class="method-card">
+            <h4>שיטה א' — רווח/הפסד הון</h4>
+            <ul>
+              <li>מציגים רווח/הפסד הון בדוח הרווח</li>
+              <li>מחשבים מס על הרווח/הפסד</li>
+              <li>בהתאמות — מוסיפים את <strong>ערך הספרים</strong></li>
+            </ul>
+          </div>
+          <div class="method-card preferred">
+            <h4>שיטה ב' — מועדפת <span class="pref-tag">מומלץ</span></h4>
+            <ul>
+              <li>מציגים רווח/הפסד הון בדוח הרווח</li>
+              <li>בהתאמות — מחזירים את רווח/הפסד ההון (בדומה לפחת)</li>
+              <li>מוסיפים את <strong>התמורה</strong> בשורה נפרדת</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>שינוי בטיפול בהון חוזר</h3>
+        <ul>
+          <li><span class="highlight hl-changed">שינוי</span> <strong>שינויים בהון החוזר</strong> — יש להציג את ההשפעה כ<strong>שינויים בהון החוזר</strong> (ולא את ההון החוזר עצמו). השינוי מתבטא בתזרים בשורת ההתאמות.</li>
+        </ul>
       </div>
     </section>
 
+    <!-- ══════════════════════════════════ -->
     <!-- ── Unit 7-8 ── -->
+    <!-- ══════════════════════════════════ -->
     <section class="unit-section rose">
       <div class="card">
         <div class="card-header">
@@ -640,7 +834,9 @@
       </div>
     </section>
 
+    <!-- ══════════════════════════════════ -->
     <!-- ── Unit 10-11 ── -->
+    <!-- ══════════════════════════════════ -->
     <section class="unit-section violet">
       <div class="card">
         <div class="card-header">
@@ -655,11 +851,20 @@
         <h3>נקודת פתיחה</h3>
         <p>מתחילים מהגדרת שווי חברה: <strong>E + D</strong> (הון עצמי + חוב). החוב מחושב כהיוון תזרימי המזומנים הנובעים מהאג"ח עצמה (כבר טופל ביחידות הראשונות).</p>
 
+        <div class="link-box">
+          <p>🔗 <strong>חיבור ליחידה 2:</strong> כאן חוזרים ל<strong>מודל גורדון</strong> שהוצג כבר ביחידות 2–4, ומשתמשים בו לשערוך הון עצמי. מומלץ להוסיף הסבר על <strong>ההבדל בין מניות לחוב</strong> מבחינת הסיכונים השונים שכל אחד מהם נושא.</p>
+        </div>
+
         <h3>שינויים ודגשים מרכזיים</h3>
         <ul>
           <li><span class="highlight hl-new">חדש</span> שימוש ב-<strong>EBIT</strong> במקום NOI.</li>
-          <li><span class="highlight hl-important">מפתח</span> חישוב מחיר הון משוקלל על בסיס לילקול בטא — <strong>בטא חוב</strong> ו<strong>בטא הון עצמי</strong> כ"בטא נכסים".</li>
+          <li><span class="highlight hl-important">מפתח</span> חישוב מחיר הון משוקלל על בסיס חילוק בטא — <strong>בטא חוב</strong> ו<strong>בטא הון עצמי</strong> כ"בטא נכסים". <em>(הערה: נושא זה מוצג אך היישום בהמשך חוזר לשימוש ב-WACC, שהוא למעשה המודל העיקרי לחישוב מחיר ההון.)</em></li>
           <li>שימוש ב-<strong>SML</strong> (Security Market Line) לחישוב מחיר ההון המשוקלל לנכסים, על בסיס בטא נכסים.</li>
+        </ul>
+
+        <h3>מושגים להזכרה</h3>
+        <ul>
+          <li><span class="highlight hl-important">חשוב</span> <strong>מכפיל (P/E)</strong> — הנושא הועבר להעשרה, אך יש מקום להגדיר את המושג ואת המשמעות שלו. אין צורך להיכנס מעבר לכך.</li>
         </ul>
 
         <h3>המשך — הגדרה קונבנציונלית</h3>
