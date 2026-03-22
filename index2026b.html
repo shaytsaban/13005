@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13005 - ניהול פיננסי - 2026ב</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Modern Hebrew Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --accent-color: #00d2ff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --success-color: #10b981;
+            /* Estimation Pedagogy Variables */
+            --warning-bg: #fffbeb;
+            --warning-border: #fcd34d;
+            --warning-text: #92400e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Layout --- */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Hero Section --- */
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 1.5rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 210, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .course-code {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .instructor-name {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+        }
+
+
+
+        /* --- Main Content Container --- */
+        .container {
+            max-width: 900px;
+            margin: -3rem auto 3rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Pedagogical Estimation Focus --- */
+        .estimation-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-right: 6px solid var(--warning-border); /* Right border for RTL */
+            border-left: none;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .estimation-icon {
+            font-size: 2rem;
+            color: #d97706;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .estimation-content h3 {
+            color: var(--warning-text);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .estimation-content p {
+            color: #b45309;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+
+        .section-header i {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-left: 1rem; /* RTL Layout */
+            background: #e0e7ff;
+            padding: 0.75rem;
+            border-radius: 12px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* --- About Section --- */
+        .about-text {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .topic-item i {
+            color: var(--success-color);
+            margin-left: 0.75rem; /* RTL Layout */
+            margin-right: 0;
+            margin-top: 0.25rem;
+        }
+
+        /* --- Materials Section --- */
+        .material-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-bottom: 1rem;
+        }
+
+        .material-link:hover {
+            border-color: #1e3c72;
+            background: #f8fafc;
+        }
+
+        .material-icon-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .material-icon-wrapper i {
+            font-size: 1.25rem;
+            color: #1e3c72;
+            margin-left: 1rem; /* RTL Layout */
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            margin-top: auto;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+        }
+
+        .good-luck {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            color: #1e3c72;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            direction: ltr; /* Keeping email LTR inside RTL */
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 3rem 1rem 5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .estimation-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-right: none;
+                border-top: 6px solid var(--warning-border);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <header>
+            <div class="header-content">
+                <span class="course-code">13005 • סמסטר 2026ב</span>
+                <h1>ניהול פיננסי</h1>
+                <p class="instructor-name">ד"ר שי צבאן</p>
+
+
+
+            </div>
+        </header>
+
+        <section class="container">
+
+            <!-- Estimation Pedagogical Card -->
+            <div class="estimation-card" id="estimation-notice">
+                <div class="estimation-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="estimation-content">
+                    <h3>הערה פדגוגית: אומדן חומרי הלימוד</h3>
+                    <p>
+                        תלמידים יקרים, שימו לב כי חומרי הלימוד והנושאים המפורטים כעת באתר מהווים <strong>אומדן (Estimation)</strong> בלבד. 
+                        חומרי הלימוד עצמם, המערכים והמטלות יעודכנו בפועל תוך כדי התקדמות השיעורים לאורך הסמסטר.
+                    </p>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="card" id="about">
+                <div class="section-header">
+                    <i class="fas fa-university"></i>
+                    <h2>על הקורס</h2>
+                </div>
+                <p class="about-text">קורס זה מספק מבוא מקיף לעקרונות הליבה והפרקטיקות של ניהול פיננסי. במסגרת הקורס נלמד על:</p>
+                <div class="topics-grid">
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>חישוב ערך נוכחי (PV) וערך עתידי (FV)</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>הבנה ויישום של שיעורי ריבית שונים</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>יישומים פיננסיים בעולם האמיתי</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>תכנון פיננסי ותקצוב</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ניהול סיכונים, תשואה וניהול תיקי השקעות</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>אסטרטגיות להקצאת הון יעילה</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materials Section -->
+            <div class="card" id="materials">
+                <div class="section-header">
+                    <i class="fas fa-folder-open"></i>
+                    <h2>חומרי הקורס</h2>
+                </div>
+                <p class="about-text">כאן תוכלו לגשת לסיכומי ההרצאות, המצגות והתרגילים שסופקו על ידי המרצה.</p>
+
+                <a href="https://mypac-my.sharepoint.com/:w:/g/personal/shay_tsaban_pac_org_il/Ed8SZDO_QTNAlHbGMhKJR9sB8KaJMt_4-uyBdiTcRgpQmA?e=9cGctG"
+                    class="material-link" target="_blank">
+                    <div class="material-icon-wrapper">
+                        <i class="fas fa-book"></i>
+                        <span>סיכומי קורס - סמסטר 2026ב</span>
+                    </div>
+                    <i class="fas fa-chevron-left" style="font-size: 0.9rem; color: #cbd5e1; margin: 0;"></i> <!-- RTL Chevron pointing left -->
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="good-luck">!בהצלחה בהמשך הסמסטר</div>
+            <p style="margin-top: 1rem;">
+                לכל שאלה, תרגישו חופשי לפנות:<br>
+                <a href="mailto:shay.tsaban@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> shay.tsaban@gmail.com
+                </a>
+            </p>
+        </footer>
+    </div>
+
+</body>
+</html>
